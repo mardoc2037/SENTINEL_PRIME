@@ -4,7 +4,7 @@ import subprocess
 # Replace these with your actual values
 GITHUB_USERNAME = "mardoc2037"
 REPO_NAME = "SENTINEL_PRIME"
-ACCESS_TOKEN = "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" #Replace with your actual token
+ACCESS_TOKEN = os.getenv("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")
 COMMIT_MESSAGE = "Initial commit from push_to_github.py"
 
 # Set up remote URL with token
