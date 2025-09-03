@@ -9,7 +9,7 @@ REPO_NAME = "SENTINEL_PRIME"
 COMMIT_MESSAGE = "Initial commit from push_to_github.py"
 
 # Set up remote URL with token
-remote_url = f"https://{GITHUB_USERNAME}:{ACCESS_TOKEN}@github.com/{GITHUB_USERNAME}/{REPO_NAME}.git"
+remote_url = f"https://{ACCESS_TOKEN}@github.com/{GITHUB_USERNAME}/{REPO_NAME}.git"
 
 def run_command(command):
     result = subprocess.run(command, shell=True, capture_output=True, text=True)
