@@ -1,10 +1,14 @@
 import os
 import subprocess
+
 # Replace these with your actual values
 GITHUB_USERNAME = "mardoc2037"
 REPO_NAME = "SENTINEL_PRIME"
 ACCESS_TOKEN = "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" #Replace with your actual token
 COMMIT_MESSAGE = "Initial commit from push_to_github.py"
+
+# Set up remote URL with token
+remote_url = f"https://{GITHUB_USERNAME}:{ACCESS_TOKEN}@github.com/{GITHUB_USERNAME}/{REPO_NAME}.git"
 
 def run_command(command):
     result = subprocess.run(command, shell=True, capture_output=True, text=True)
@@ -23,8 +27,11 @@ def main():
     # Commit changes
     run_command(f'git commit -m "{COMMIT_MESSAGE}"')
 
-    # Add remote if not already added
-    run_command(f"git remote add origin {remote_url}")
+    # Set branch to main
+    run_command("git branch -M main")
+
+    # Set remote URL (skip if already exists)
+    run_command(f"git remote set-url origin {remote_url}")
 
     # Push to GitHub
     run_command("git push -u origin main")
