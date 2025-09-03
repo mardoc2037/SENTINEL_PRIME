@@ -13,9 +13,6 @@ def run_command(command):
         print("Error:", result.stderr)
 
 def main():
-    # Set up remote URL with token
-    remote_url = f"https://{GITHUB_USERNAME}:{ACCESS_TOKEN}@github.com/{GITHUB_USERNAME}/{REPO_NAME}.git"
-
     # Initialize git repo if not already
     if not os.path.exists(".git"):
         run_command("git init")
@@ -30,7 +27,7 @@ def main():
     run_command(f"git remote add origin {remote_url}")
 
     # Push to GitHub
-    run_command("git push -u origin master")
+    run_command("git push -u origin main")
 
 if __name__ == "__main__":
     main()
