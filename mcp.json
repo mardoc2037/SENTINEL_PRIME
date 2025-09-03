@@ -1,22 +1,18 @@
 {
   "tools": [
-    {
-      "name": "GitHubRepoMetadata",
-      "endpoint": "https://api.github.com/repos/mardoc2037/SENTINEL_PRIME",
-      "method": "GET",
-      "description": "Fetches metadata about the SENTINEL_PRIME GitHub repository"
-    },
-    {
-      "name": "GitHubFileContents",
-      "endpoint": "https://api.github.com/repos/mardoc2037/SENTINEL_PRIME/contents/{+path}",
-      "method": "GET",
-      "description": "Fetches the contents of a specific file in the repository"
-    },
-    {
-      "name": "GitHubCommits",
-      "endpoint": "https://api.github.com/repos/mardoc2037/SENTINEL_PRIME/commits",
-      "method": "GET",
-      "description": "Lists recent commits to the repository"
+{
+  "name": "GitHubRepoMetadata",
+  "endpoint": "https://api.github.com/repos/mardoc2037/SENTINEL_PRIME",
+  "method": "GET",
+  "headers": {
+    "Authorization": "Bearer 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",
+    "Accept": "application/vnd.github.v3+json"
+  },
+  "description": "Fetches metadata about the SENTINEL_PRIME GitHub repository"
+}
+
+
+      "description": "Accesses the SENTINEL_PRIME GitHub repository for metadata and file contents"
     }
   ]
 }
