@@ -7,6 +7,9 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
+push_to_github.py
+mcp.json
+~/.ssh/id_ed25519
 node_modules/
 .env
 
