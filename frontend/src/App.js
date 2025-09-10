@@ -1,23 +1,25 @@
 import React, { useState } from 'react';
 import './App.css';
+import logo from './logo.png'; // Make sure this path is correct
+import ModelSelector from './components/modelselector'; // Ensure this component exists
 
 function App() {
   const [prompt, setPrompt] = useState('');
   const [response, setResponse] = useState('');
   const [isThinking, setIsThinking] = useState(false);
+  const [model, setModel] = useState('llama3');
 
   const handleSubmit = async () => {
     if (!prompt.trim()) return;
 
-    setIsThinking(true); // switch button to "Thinking..."
-
+    setIsThinking(true);
     try {
       const res = await fetch('http://192.168.1.237:5000/api/query', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ prompt })
+        body: JSON.stringify({ prompt, model }),
       });
 
       if (!res.ok) {
@@ -25,17 +27,23 @@ function App() {
       }
 
       const data = await res.json();
-      setResponse(data.response || data.error || 'No response received.');
-    } catch (err) {
-      setResponse('Error: ' + err.message);
+      setResponse(data.response || 'No response received.');
+    } catch (error) {
+      console.error('Error:', error);
+      setResponse('Error communicating with backend.');
     } finally {
-      setIsThinking(false); // switch button back to "Submit"
+      setIsThinking(false);
     }
   };
 
   return (
     <div className="App">
       <header className="App-header">
+        <img
+          src={logo}
+          className={`App-logo ${isThinking ? 'pulse' : ''}`}
+          alt="SENTINEL Logo"
+        />
         <h1>Welcome to SENTINEL</h1>
         <p>Your AI-powered OSINT assistant is online.</p>
 
@@ -58,6 +66,8 @@ function App() {
         >
           {isThinking ? 'Thinking...' : 'Submit'}
         </button>
+
+        <ModelSelector onModelChange={(value) => setModel(value)} />
 
         <div style={{ marginTop: '30px', whiteSpace: 'pre-wrap' }}>
           <strong>Response:</strong>
